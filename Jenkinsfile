@@ -1,10 +1,10 @@
-//Jenkins pipeline file 
+// Jenkins pipeline file 
 
 pipeline {
     agent any
 
     tools {
-        msbuild
+        msbuild "1.0"
     }
 
     stages {
