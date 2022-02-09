@@ -4,7 +4,7 @@ pipeline {
     agent any
 
     tools {
-        msbuild "1.0"
+        MsBuild "1.30"
     }
 
     stages {
