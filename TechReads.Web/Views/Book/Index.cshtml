@@ -1,0 +1,15 @@
+@model TechReads.Web.Models.BookListModel;
+
+<h2>Books</h2>
+<div>
+    <ul>
+    @foreach (var book in Model.Books)
+    {
+        <li>
+            @book.Title by @book.Authors 
+            <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
+            <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.BookId">Delete</a>
+        </li>
+    }
+    </ul>
+</div>

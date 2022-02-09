@@ -1,0 +1,15 @@
+@model TechReads.Web.Models.BookModel;
+
+<h2>Edit Book</h2>
+<form asp-action="Edit">
+</form>
+
+@using(Html.BeginForm("Edit", "Book", Model.Book, FormMethod.Post ))
+{
+    @Html.HiddenFor(m => m.Book.BookId)
+    @Html.LabelFor(m => m.Book.Title)  @Html.TextBoxFor(m => m.Book.Title) <br />
+    @Html.LabelFor(m => m.Book.Authors)  @Html.TextBoxFor(m => m.Book.Authors) <br />
+    @Html.LabelFor(m => m.Book.ISBN)  @Html.TextBoxFor(m => m.Book.ISBN) <br />
+    @Html.LabelFor(m => m.Book.ReleaseDate)  @Html.TextBoxFor(m => m.Book.ReleaseDate) <br /> 
+    <button type="submit">Save</button>
+}
