@@ -35,7 +35,7 @@ namespace TechReads.Web.Tests
             var managerMock = new Mock<IBookManager>();
             managerMock.Setup(x => x.GetBooks()).Returns(exampleBooks);
 
-            var controller = new BookController(managerMock.Object);
+            var controller = new BookController(managerMock.Object, null, null);
 
             var result = controller.Index() as ViewResult;
 
