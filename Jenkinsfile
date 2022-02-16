@@ -3,10 +3,6 @@
 pipeline {
     agent any
 
-    tools {
-        MsBuild '1.30'
-    }
-
     stages {
         stage('Build') {
             steps {

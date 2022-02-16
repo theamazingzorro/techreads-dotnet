@@ -16,12 +16,10 @@
 	minRating = Model.Filter.MinRating, maxRating = Model.Filter.MaxRating }, FormMethod.Get)) 
 {
 	@Html.LabelFor(m => m.Ordering, "Sort By: ")
-    @Html.DropDownListFor(m => m.Ordering, Html.GetEnumSelectList<ReviewOrdering>(), new { style="margin:5px;"})
+    @Html.DropDownListFor(m => m.Ordering, Html.GetEnumSelectList<ReviewOrdering>(), new { style="margin:5px;" })
 
 	@Html.LabelFor(m => m.Filter.MinRating, "Minimum Rating: ")
 	@Html.TextBoxFor(m => m.Filter.MinRating, new { style="width:20px; margin:5px;" })
-
-	 
 
 	@Html.LabelFor(m => m.Filter.MaxRating, "Maximum Rating: ")
 	@Html.TextBoxFor(m => m.Filter.MaxRating, new { style="width:20px; margin:5px;" })
