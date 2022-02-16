@@ -34,6 +34,9 @@ namespace TechReads.BusinessLogic
         public IEnumerable<Review> GetReviewsForBook(Book book, ReviewOrdering? ordering, ReviewFilter? filter)
         {
             var reviews = _context.Reviews.Where(r => r.BookId == book.BookId);
+            //reviews = from review in _context.Reviews
+            //          where review.BookId == book.BookId
+            //          select review;
 
             if(filter != null)
             {
