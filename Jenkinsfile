@@ -7,13 +7,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
-                dotnetBuild [project='TechReads.sln']
+                dotnetBuild ([project:'TechReads.sln'])
             }
         }
         stage('Test') {
             steps {
                 echo 'Testing..'
-                dotnetTest [project='TechReads.sln']
+                dotnetTest ([project:'TechReads.sln'])
             }
         }
         stage('Deploy') {
