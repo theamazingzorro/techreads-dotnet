@@ -1,3 +1,4 @@
+@using TechReads.BusinessLogic.Filters;
 @model TechReads.Web.Models.BookListModel;
 
 <h2>Books</h2>
@@ -7,9 +8,9 @@
     {
         <li>
             @book.Title by @book.Authors 
-            <a asp-controller="Book" asp-action="Edit" asp-route-id="@book.BookId">Edit</a>
-            <a asp-controller="Book" asp-action="Delete" asp-route-id="@book.BookId">Delete</a>
+            @Html.ActionLink("More...", "Details", new { id = book.BookId })
         </li>
     }
     </ul>
+    @Html.ActionLink("Add a Book", "Add")
 </div>

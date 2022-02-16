@@ -1,0 +1,17 @@
+@model TechReads.Web.Models.ReviewerListModel;
+
+<h2>Reviewers</h2>
+<div>
+    <ul>
+    @foreach (var reviewer in Model.Reviewers)
+    {
+        <li>
+            @reviewer.DisplayName
+            @Html.ActionLink("Edit", "Edit", new { id = reviewer.ReviewerId })
+            @Html.ActionLink("Delete", "Delete", new { id = reviewer.ReviewerId })
+            @Html.ActionLink("Write a Review", "Add", "Review", new { id = reviewer.ReviewerId })
+        </li>
+    }
+    </ul>
+    @Html.ActionLink("Add a Reviewer", "Add")
+</div>

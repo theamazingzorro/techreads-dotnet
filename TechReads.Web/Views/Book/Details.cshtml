@@ -1,0 +1,44 @@
+﻿@using TechReads.BusinessLogic.Filters
+@using TechReads.Library.Models
+@model BookDetailsModel;
+
+<h3>@Model.Book.Title</h3>
+<p>Author(s): @Model.Book.Authors</p>
+<p>ISBN: @Model.Book.ISBN</p>
+@Html.ActionLink("Edit", "Edit", new { id = Model.Book.BookId })
+@Html.ActionLink("Delete", "Delet", new { id = Model.Book.BookId })
+
+<br />
+
+<h4>Reviews</h4>
+
+@using(Html.BeginForm("Details", "Book", new { id = Model.Book.BookId, ordering = Model.Ordering, 
+	minRating = Model.Filter.MinRating, maxRating = Model.Filter.MaxRating }, FormMethod.Get)) 
+{
+	@Html.LabelFor(m => m.Ordering, "Sort By: ")
+    @Html.DropDownListFor(m => m.Ordering, Html.GetEnumSelectList<ReviewOrdering>(), new { style="margin:5px;"})
+
+	@Html.LabelFor(m => m.Filter.MinRating, "Minimum Rating: ")
+	@Html.TextBoxFor(m => m.Filter.MinRating, new { style="width:20px; margin:5px;" })
+
+	 
+
+	@Html.LabelFor(m => m.Filter.MaxRating, "Maximum Rating: ")
+	@Html.TextBoxFor(m => m.Filter.MaxRating, new { style="width:20px; margin:5px;" })
+
+	<button type="submit">Apply</button>
+}
+
+<p>Average Rating: @Model.AverageStars</p>
+<ul>
+@foreach (Review review in Model.Reviews) 
+{
+	<li>
+		User: @Model.Reviewers.First(r => r.ReviewerId == review.ReviewerId).DisplayName <br/>
+		Stars: @review.Stars <br/>
+		Comment: @review.Comment <br/>
+		@Html.ActionLink("Edit", "Edit", "Review", new { id = review.ReviewId })
+		@Html.ActionLink("Delete", "Delete", "Review", new { id = review.ReviewId })
+	</li>
+}
+</ul>

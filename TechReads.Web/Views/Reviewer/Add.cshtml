@@ -1,0 +1,13 @@
+@model TechReads.Web.Models.ReviewerModel;
+
+<h2>Add Reviewer</h2>
+<form asp-action="Add">
+</form>
+
+@using(Html.BeginForm("Save", "Reviewer", Model.Reviewer, FormMethod.Post ))
+{
+    @Html.LabelFor(m => m.Reviewer.UserName)  @Html.TextBoxFor(m => m.Reviewer.UserName) <br />
+    @Html.LabelFor(m => m.Reviewer.DisplayName)  @Html.TextBoxFor(m => m.Reviewer.DisplayName) <br />
+    @Html.HiddenFor(m => m.Reviewer.Reviews)
+    <button type="submit">Save</button>
+}

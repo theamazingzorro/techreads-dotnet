@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using TechReads.BusinessLogic;
 using TechReads.Library.Data;
 
 namespace TechReads.Web
@@ -22,8 +24,12 @@ namespace TechReads.Web
         {
             services.AddControllersWithViews();
             services.AddDbContext<TechReadsContext>(options =>
-                options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TechReadsDB_Mvc;Trusted_Connection=True;MultipleActiveResultSets=true"),
+                options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=TechReadsDB_MVC;Trusted_Connection=True;MultipleActiveResultSets=true"),
                 ServiceLifetime.Transient);
+
+            services.AddTransient<IBookManager, BookManager>();
+            services.AddTransient<IReviewManager, ReviewManager>();
+            services.AddTransient<IReviewerManager, ReviewerManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

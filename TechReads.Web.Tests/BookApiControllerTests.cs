@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using System.Net;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Moq;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TechReads.Web.Tests
 {
@@ -15,6 +18,19 @@ namespace TechReads.Web.Tests
         {
             _factory = factory;
             _client = _factory.CreateClient();
+        }
+
+        private HttpClient GetClientWithMock<T>(Mock mock) where T : class
+        {
+            var application = _factory.WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    services.AddSingleton((T) mock.Object);
+                });
+            });
+
+            return application.CreateClient();
         }
 
         [Fact]  
