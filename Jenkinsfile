@@ -13,7 +13,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                dotnetTest ([project:'TechReads.sln'])
+                // dotnetTest ([project:'TechReads.sln'])
             }
         }
         stage('Deploy') {
