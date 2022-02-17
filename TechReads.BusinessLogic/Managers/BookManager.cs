@@ -6,9 +6,11 @@ namespace TechReads.BusinessLogic
     public class BookManager : IBookManager
     {
         private readonly TechReadsContext _context;
-        public BookManager(TechReadsContext context)
+        private readonly IBookRepository _bookRepository;
+        public BookManager(TechReadsContext context, IBookRepository bookRepo)
         {
             _context = context;
+            _bookRepository = bookRepo;
             EnsureDatabaseSetupCompleted(_context);
         }
         private static void EnsureDatabaseSetupCompleted(TechReadsContext context)
@@ -19,7 +21,8 @@ namespace TechReads.BusinessLogic
 
         public IEnumerable<Book> GetBooks()
         {
-            return _context.Books.Take(10).ToArray();
+            //return _context.Books.Take(10).ToArray();
+            return _bookRepository.GetBooksADO();
         }
 
         public Book? GetBookById(int id)
@@ -40,11 +43,19 @@ namespace TechReads.BusinessLogic
             _context.SaveChanges();
         }
 
-        public double GetAverageStarsById(int id)
+        public double? GetAverageStarsById(int id)
         {
-            return _context.Reviews.Where(r => r.BookId == id)
-                .Select(r => r.Stars)
-                .Average();
+            var reviews = _context.Reviews.Where(r => r.BookId == id)
+                .Select(r => r.Stars);
+
+            if (reviews.Any())
+            {
+                return reviews.Average();
+            } 
+            else
+            {
+                return null;
+            }
         }
     }
 }

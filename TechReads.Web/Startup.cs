@@ -30,6 +30,7 @@ namespace TechReads.Web
             services.AddTransient<IBookManager, BookManager>();
             services.AddTransient<IReviewManager, ReviewManager>();
             services.AddTransient<IReviewerManager, ReviewerManager>();
+            services.AddTransient<IBookRepository, BookRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

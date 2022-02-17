@@ -9,6 +9,6 @@ namespace TechReads.BusinessLogic
         IEnumerable<Book> GetBooks();
         void UpSert(Book book);
 
-        double GetAverageStarsById(int id);
+        double? GetAverageStarsById(int id);
     }
 }

@@ -22,7 +22,7 @@ namespace TechReads.Web
         [HttpGet]
         public IActionResult Index()
         {
-            var model = new BookListModel(_bookManager.GetBooks());
+            var model = new BookListModel { Books = _bookManager.GetBooks() };
             return View("Index", model);
         }
 
@@ -35,7 +35,7 @@ namespace TechReads.Web
                 Book = book,
                 Reviews = _reviewManager.GetReviewsForBook(book, ordering, filter),
                 Reviewers = _reviewerManager.GetReviewers(),
-                AverageStars = _bookManager.GetAverageStarsById(id),
+                AverageStars = _bookManager.GetAverageStarsById(id)?.ToString() ?? "N/A",
                 Ordering = ordering,
                 Filter = filter
             };
@@ -45,7 +45,7 @@ namespace TechReads.Web
         [HttpGet]
         public IActionResult Add()
         {
-            var model = new BookModel(new Book());
+            var model = new BookModel { Book = new Book() };
             return View("Add", model);
         }
 
@@ -59,7 +59,7 @@ namespace TechReads.Web
                 return RedirectToAction("Index");
             }
 
-            var model = new BookModel(book);
+            var model = new BookModel { Book = book };
             return View("Edit", model);
         }
 

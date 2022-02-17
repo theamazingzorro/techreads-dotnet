@@ -7,7 +7,6 @@ namespace TechReads.Web.Models
 {
     public class BookModel
     {
-        public BookModel(Book book) => Book = book;
-        public Book Book { get; private set; }
+        public Book Book { get; init; }
     }
 }

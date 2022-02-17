@@ -7,7 +7,6 @@ namespace TechReads.Web.Models
 {
     public class ReviewerListModel
     {
-        public ReviewerListModel(IEnumerable<Reviewer> reviewers) => Reviewers = reviewers;
-        public IEnumerable<Reviewer> Reviewers { get; private set; }
+        public IEnumerable<Reviewer> Reviewers { get; init; }
     }
 }

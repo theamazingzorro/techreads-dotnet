@@ -6,7 +6,7 @@ namespace TechReads.Web.Models
 {
     public class BookDetailsModel
     {
-        public double AverageStars { get; init; }
+        public string AverageStars { get; init; }
         public Book Book { get; init; }
         public IEnumerable<Review> Reviews { get; init; }
         public IEnumerable<Reviewer> Reviewers { get; init; }

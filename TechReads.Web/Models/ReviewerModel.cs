@@ -7,7 +7,6 @@ namespace TechReads.Web.Models
 {
     public class ReviewerModel
     {
-        public ReviewerModel(Reviewer reviewer) => Reviewer = reviewer;
-        public Reviewer Reviewer { get; private set; }
+        public Reviewer Reviewer { get; init; }
     }
 }

@@ -16,14 +16,14 @@ namespace TechReads.Web.Controllers
         // GET: ReviewerController
         public ActionResult Index()
         {
-            var model = new ReviewerListModel(_reviewerManager.GetReviewers());
+            var model = new ReviewerListModel { Reviewers = _reviewerManager.GetReviewers() };
             return View("Index", model);
         }
 
         // GET: ReviewerController/Add
         public ActionResult Add()
         {
-            var model = new ReviewerModel(new Reviewer());
+            var model = new ReviewerModel { Reviewer = new Reviewer() };
             return View("Add", model);
         }
 
@@ -38,7 +38,7 @@ namespace TechReads.Web.Controllers
                 return RedirectToAction("Index");
             }
 
-            var model = new ReviewerModel(reviewer);
+            var model = new ReviewerModel {  Reviewer = reviewer };
             return View("Edit", model);
         }
 
