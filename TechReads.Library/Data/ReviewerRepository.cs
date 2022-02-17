@@ -60,8 +60,7 @@ namespace TechReads.Library.Data
     
         public IEnumerable<Reviewer> GetReviewersDapper()
         {
-            var sql = @" SELECT *
-                         FROM Reviews
+            var sql = @" SELECT * FROM Reviews
                          JOIN Reviewers on Reviews.ReviewerId = Reviewers.ReviewerId;";
             using var conn = new SqlConnection(connString);
 

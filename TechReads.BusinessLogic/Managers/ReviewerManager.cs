@@ -11,9 +11,11 @@ namespace TechReads.BusinessLogic
     public class ReviewerManager : IReviewerManager
     {
         private readonly TechReadsContext _context;
-        public ReviewerManager(TechReadsContext context)
+        private readonly IReviewerRepository _repository;
+        public ReviewerManager(TechReadsContext context, IReviewerRepository reviewerRepo)
         {
             _context = context;
+            _repository = reviewerRepo;
             EnsureDatabaseSetupCompleted(_context);
         }
         private static void EnsureDatabaseSetupCompleted(TechReadsContext context)
@@ -36,7 +38,8 @@ namespace TechReads.BusinessLogic
 
         public IEnumerable<Reviewer> GetReviewers()
         {
-            return _context.Reviewers.Take(10).ToArray();
+            //return _context.Reviewers.Take(10).ToArray();
+            return _repository.GetReviewersADO();
         }
 
         public void UpSert(Reviewer reviewer)
